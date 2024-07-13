@@ -6,6 +6,8 @@ export const UserMain = () => {
     const [ user, setUser ] = useState({})
     const [ pokemonId , setPokemonId ] = useState(1)
 
+    const {VITE_API} = import.meta.env
+
     const getUser = async () => {
 
         const controller = new AbortController()
@@ -14,7 +16,7 @@ export const UserMain = () => {
             signal : controller.signal
         }
 
-        await fetch('https://randomuser.me/api/', options)
+        await fetch(VITE_API, options)
         .then(res => res.json())
         .then(data => setUser(data))
         .catch(err => console.log(err))
